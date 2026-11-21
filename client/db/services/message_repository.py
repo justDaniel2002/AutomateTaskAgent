@@ -11,12 +11,11 @@ class MessageRepository:
         self.db = db
 
     def create(self, message:Message):
-        message.created_at = datetime.now()
-        query = "INSERT INTO messages (message_id, session_id, role, content, metadata, created_at) VALUES (?, ?, ?, ?, ?, ?)"
-        self.db.execute(query, tuple(message.model_dump().values()))
+        query = "INSERT INTO message (message_id, session_id, role, content, metadata, created_at) VALUES (:message_id, :session_id, :role, :content, :metadata, :created_at)"
+        self.db.execute(query, message.model_dump())
 
     def get_by_session_id(self, session_id:str) -> list[Optional[Message]]:
-        query = "SELECT * FROM messages WHERE session_id = ?"
+        query = "SELECT * FROM message WHERE session_id = ?"
         rows = self.db.get_all(query, (session_id,))
         return [Message(**row) for row in rows]
 

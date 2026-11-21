@@ -16,5 +16,5 @@ class Message(BaseModel):
     session_id: str
     role: MessageRole = MessageRole.USER
     content: str
-    metadata: dict = Field(default_factory=dict)
+    metadata: str
     created_at: Optional[datetime] = None
