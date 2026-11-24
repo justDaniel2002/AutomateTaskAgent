@@ -20,7 +20,7 @@ class Task(BaseModel):
 
     status: TaskStatus = TaskStatus.PENDING
 
-    input_data: dict = Field(default_factory=dict)
+    input_data: Optional[str] = None
     result: Optional[str] = None
     error: Optional[str] = None
 

@@ -1,11 +1,11 @@
 
 
 from client.db.database import init_db
-from client.pipeline.steps import ask_ai
+from client.pipeline.runner import runner
 
 
 def main():
-    ask_ai()
+    runner()
 
 if __name__ == "__main__":
     init_db()
